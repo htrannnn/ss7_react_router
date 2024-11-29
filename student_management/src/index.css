@@ -1,0 +1,23 @@
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	margin: 0;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#add-link {
+	margin: 0px 0 10px 66px !important;
+	text-align: center;
+}
+
+.item-group {
+	display: flex;
+	width: 100%;
+}
+
+#search {
+	margin-bottom: 10px !important;
+}
