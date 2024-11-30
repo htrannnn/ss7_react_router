@@ -4,6 +4,7 @@ import StudentList from "./components/StudentList";
 import StudentManagement from "./components/StudentManagement";
 import HomeComponent from "./components/HomeComponent";
 import AddComponent from "./components/AddComponent";
+import FooterComponent from "./components/FooterComponent";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Route path={"/homepage"} element={<HomeComponent />}></Route>
 				<Route path={"/add_students"} element={<AddComponent />}></Route>
 			</Routes>
+			<FooterComponent />
 		</>
 	);
 }
