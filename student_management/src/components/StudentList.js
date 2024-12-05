@@ -2,9 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { getAllStudent, searchByName } from "../services/studentService";
 import StudentItem from "./StudentItem";
 import { Link } from "react-router-dom";
+import DeleteComponent from "./DeleteComponent";
 
 function StudentList() {
 	const [studentList, setStudentList] = useState([]);
+	const [show, setShow] = useState(false);
+	const [selectedStudent, setSelectedStudent] = useState({});
 
 	useEffect(() => {
 		setStudentList(getAllStudent());
@@ -12,12 +15,27 @@ function StudentList() {
 
 	const searchRef = useRef();
 
+	const showModal = (student) => {
+		setShow(true);
+		setSelectedStudent(student);
+	};
+
+	const closeModal = () => {
+		setShow(false);
+		setSelectedStudent({});
+	};
+
+	const deleteStudent = (student) => {
+		setStudentList(studentList.filter((students) => students.id !== selectedStudent.id));
+		closeModal();
+	};
+
 	const handleSearch = () => setStudentList(() => [...searchByName(searchRef.current.value)]);
 
 	return (
-		<div className="card-body">
+		<div className="container my-3">
 			<div className="item-group">
-				<Link className="list-group-item list-group-item-action w-25" id="add-link" to="/add_students">
+				<Link className="btn btn-secondary rounded-0 w-25" id="add-link" to="/students/add_students">
 					Add Student
 				</Link>
 
@@ -31,6 +49,7 @@ function StudentList() {
 			<table className="table table-striped table-light">
 				<thead>
 					<tr>
+						<th>STT</th>
 						<th>ID</th>
 						<th>Name</th>
 						<th>Phone</th>
@@ -39,11 +58,12 @@ function StudentList() {
 					</tr>
 				</thead>
 				<tbody>
-					{studentList.map((student) => (
-						<StudentItem key={student.id} student={student} />
+					{studentList.map((student, i) => (
+						<StudentItem key={student.id} student={student} i={i} showModal={showModal} />
 					))}
 				</tbody>
 			</table>
+			<DeleteComponent show={show} student={selectedStudent} deleteStudent={deleteStudent} closeModal={closeModal} />
 		</div>
 	);
 }

@@ -9,21 +9,23 @@ function AddComponent() {
 	const nameRef = useRef();
 	const phoneRef = useRef();
 	const emailRef = useRef();
+	const addressRef = useRef();
 
 	const handleAddNewStudent = (event) => {
 		event.preventDefault();
 		addNewStudent({
-			id: idRef.current.value,
+			id: +idRef.current.value,
 			name: nameRef.current.value,
 			phone: phoneRef.current.value,
 			email: emailRef.current.value,
+			address: addressRef.current.value,
 		});
 		console.log(getAllStudent());
 		navigate("/students");
 	};
 
 	return (
-		<div className="card-body">
+		<div className="container">
 			<h2>Add New Student</h2>
 			<form>
 				<div className="row ms-2">
@@ -48,6 +50,12 @@ function AddComponent() {
 					<label className="col-sm-1">Email:</label>
 					<div className="col-sm-4">
 						<input type="text" name="email" placeholder="Enter email" ref={emailRef} />
+					</div>
+				</div>
+				<div className="row ms-2 mt-2">
+					<label className="col-sm-1">Address:</label>
+					<div className="col-sm-4">
+						<input type="text" name="address" placeholder="Enter address" ref={addressRef} />
 					</div>
 				</div>
 				<button type="button" value="submit" className="btn btn-secondary rounded-0 mb-3 mt-3" onClick={handleAddNewStudent}>
