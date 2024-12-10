@@ -39,7 +39,7 @@ export function searchByName(name) {
 
 export function getStudentById(id) {
 	for (let i = 0; i < studentList.length; i++) {
-		if (studentList[i].id === +id) {
+		if (studentList[i].id == id) {
 			return studentList[i];
 		}
 	}

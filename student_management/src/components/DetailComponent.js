@@ -9,16 +9,15 @@ function DetailComponent() {
 
 	useEffect(() => {
 		console.log(id);
-		const student = getStudentById(id);
 
+		const student = getStudentById(+id);
 		setStudentDetail(student);
-		console.log(student);
 	}, [id]);
 
 	return (
 		<div className="card-body">
 			<h3>Student Detail</h3>
-			<p>ID: {studentDetail.id} </p>
+			<p>ID: {+studentDetail.id} </p>
 			<p>Name: {studentDetail.name}</p>
 			<p>Phone: {studentDetail.phone}</p>
 			<p>Email: {studentDetail.email}</p>
